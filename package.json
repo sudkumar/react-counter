@@ -2,7 +2,7 @@
   "name": "reactjs-counter",
   "version": "0.2.0",
   "description": "A simple counter component which increments/decrements a count to a given value with easing.",
-  "main": "build/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "watch 'npm run build' src",
     "build": "babel src -d lib/",
