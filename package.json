@@ -1,6 +1,6 @@
 {
   "name": "reactjs-counter",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A simple counter component which increments/decrements a count to a given value with easing.",
   "main": "lib/index.js",
   "scripts": {
