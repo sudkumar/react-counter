@@ -1,0 +1,10 @@
+import "./polyfills"
+
+import React from "react"
+import ReactDOM from "react-dom"
+import Counter from "."
+
+test("renders without crashing", () => {
+  const div = document.createElement("div")
+  ReactDOM.render(<Counter />, div)
+})
