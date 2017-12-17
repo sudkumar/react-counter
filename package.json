@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sudkumar/react-counter.git"
+    "url": "git+https://github.com/sudkumar/reactjs-counter.git"
   },
   "keywords": [
     "react",
@@ -24,9 +24,9 @@
   "author": "Sudhir Mitharwal",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sudkumar/react-counter/issues"
+    "url": "https://github.com/sudkumar/reactjs-counter/issues"
   },
-  "homepage": "https://github.com/sudkumar/react-counter#readme",
+  "homepage": "https://github.com/sudkumar/reactjs-counter#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
