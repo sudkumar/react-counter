@@ -88,6 +88,6 @@ typings/
 # dotenv environment variables file
 .env
 
-lib/**/*.test.js
+lib
 
 # End of https://www.gitignore.io/api/node,macos

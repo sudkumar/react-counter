@@ -5,7 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "watch 'npm run build' src",
-    "build": "babel src -d lib/",
+    "build": "rimraf lib/* && babel src -d lib/",
+    "build:docs": "rimraf docs/js/* && webpack --config webpack.config.docs.js",
+    "docs": "webpack-dev-server --config webpack.config.docs.js",
     "prepublish": "npm run build",
     "flow": "flow",
     "test": "jest",
@@ -16,6 +18,9 @@
     "type": "git",
     "url": "git+https://github.com/sudkumar/reactjs-counter.git"
   },
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "react",
     "counter",
@@ -30,6 +35,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
@@ -43,11 +49,17 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.5.1",
     "flow-bin": "^0.61.0",
+    "html-webpack-inline-chunk-plugin": "^1.1.1",
+    "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
     "np": "^2.18.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "watch": "^1.0.2"
+    "rimraf": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.4",
+    "watch": "^1.0.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0",

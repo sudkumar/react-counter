@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counter | Reactjs</title>
+  <link href="https://fonts.googleapis.com/css?family=Miriam+Libre|Source+Sans+Pro:200,400" rel="stylesheet">
+  <style type="text/css">
+    /* global and resets */
+    html, body { margin: 0; padding: 0; min-height: 100%; font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #525252; font-size: 16px;  }
+    * { box-sizing: border-box;  }
+    .container { max-width: 1080px; margin: 0 auto;  }
+    @media only screen and (min-width: 48em) {.container { width: 49rem; }}
+    @media only screen and (min-width: 64em) {.container { width: 65rem; }}
+    @media only screen and (min-width: 75em) { .container { width: 76rem; }}
+    h1, h2, h3, h4, h5, h6, b, strong, label, th { font-weight: 400; -webkit-font-smoothing: antialiased; }
+    h1 { font-size: 48px; font-weight: 200; }
+    a, p code { color: #f4645f;}
+    button.focus, button:focus, button:hover, a { text-decoration: none; }
+    /*utils*/
+    .text-center { text-align: center;  }
+    /*hero styles*/
+    .hero { padding: 60px 0;  }
+
+    .hero p, .example p { color: #aeaeae; margin-bottom: 60px; font-family: "Miriam Libre","Source Sans Pro",sans-serif; font-size: 21px; }
+    /*example*/
+    .example { padding: 75px 0;  }
+    .example h1, .example p { margin: 0 0 20px;  }
+    .example table { margin: 20px auto;  }
+    .example table th, .example table td { padding: 10px; }
+    .example:nth-child(2n) { background: #f0f2f1  }
+    .example:nth-child(2n) .container { background: white; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+
+    .donut {
+      margin: 0 auto;
+      transform: rotate(-90deg);
+      background: #f1f2f1;
+      border-radius: 50%;
+      display: block;
+    }
+    .donut__circle {
+      fill: #f1f2f1;
+      stroke: #0074d9;
+      stroke-width: 50;
+      stroke-dasharray: 0 158;
+    }
+    .donut--transition .donut__circle {
+      transition: stroke-dasharray 0.3s ease;
+    }
+    .donut__hole {
+      stroke-width: 20;
+      stroke: white;
+      stroke-dasharray: 94.8, 158;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
