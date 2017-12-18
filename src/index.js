@@ -21,7 +21,7 @@ type State = {
   count: number
 };
 
-const raf: (fn: () => void) => number = window.requestAnimationFrame
+const raf: (fn: () => void) => number = global.requestAnimationFrame
 
 export class Counter extends React.Component<Props, State> {
 
