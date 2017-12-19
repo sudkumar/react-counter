@@ -11,10 +11,15 @@ import { linear,
 } from "./utils"
 
 type Props = {
-  value: number,
-  render: (value: number) => React.Node,
-  easeFn: "linear" | "ease-in" | "ease-out" | "ease-in-out",
-  duration: number
+  value: number, // value to which counter should go, start from 0
+  render: (value: number) => React.Node, // render function to render an component
+  easeFn: "linear" | "ease-in" | "ease-out" | "ease-in-out", // easing functions
+  duration: number, // duration for counting
+  // if strict is set to true, then the counter will finish with the given duration,
+  // else it'll use the 16ms (1 frame) for each to smooth the counting
+  // when using strict mode, if you are using it for some animation, please make sure to add the transition for that property
+  // else you may feel jerks
+  strict: boolean,
 };
 
 type State = {
@@ -33,7 +38,8 @@ export class Counter extends React.Component<Props, State> {
     value: 0,
     easeFn: "ease-out",
     duration: 1500,
-    render: (value: number) => <span>{value}</span>
+    render: (value: number) => <span>{value}</span>,
+    strict: false,
   }
 
   state = {
@@ -70,7 +76,7 @@ export class Counter extends React.Component<Props, State> {
   }
 
   incrementCounter (counter?: number = 0) {
-    const { value, duration } = this.props
+    const { value, duration, strict } = this.props
     if (this.state.count < value) {
       this.setState(({ count: number }): ({ count: number }) => ({
         count: this.easeFn(counter, 0, value, duration)
@@ -78,7 +84,7 @@ export class Counter extends React.Component<Props, State> {
         const timeBeforeRag: number = getCurrentTime()
         raf(() : void => {
           const timeAtInc: number = getCurrentTime()
-          this.incrementCounter(counter + timeAtInc - timeBeforeRag)
+          this.incrementCounter(counter + (strict ? timeAtInc - timeBeforeRag : 16))
         })
       })
     }
