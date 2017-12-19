@@ -21,7 +21,11 @@ type State = {
   count: number
 };
 
-const raf: (fn: () => void) => number = global.requestAnimationFrame
+type RAF = (fn: () => void) => number;
+
+const root: { requestAnimationFrame: RAF } = typeof window === 'undefined' ? global : window
+
+const raf: RAF = root.requestAnimationFrame
 
 export class Counter extends React.Component<Props, State> {
 
