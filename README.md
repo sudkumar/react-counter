@@ -12,7 +12,7 @@ $ npm install --save reactjs-counter
 import Counter from "reactjs-counter"
 
 const MyComponent = () => {
-  return <Counter value={100} />
+  return <Counter to={80} />
 }
 
 ```
@@ -23,7 +23,8 @@ const MyComponent = () => {
 // @flow
 
 type Props = {
-  value: number, // value to which counter should go, start from 0
+  from: number, // value to which counter should go, start from 0
+  to: number, // value to which counter should go, start from 0
   render: (value: number) => React.Node, // render function to render an component
   easeFn: "linear" | "ease-in" | "ease-out" | "ease-in-out", // easing functions
   duration: number, // duration for counting
@@ -35,7 +36,8 @@ type Props = {
 };
 
 defaultProps = {
-  value: 0,
+  from: 0,
+  to: 0,
   easeFn: "ease-out",
   duration: 1500,
   render: (value: number) => <span>{value}</span>,

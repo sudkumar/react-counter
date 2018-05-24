@@ -11,7 +11,8 @@ import { linear,
 } from "./utils"
 
 type Props = {
-  value: number, // value to which counter should go, start from 0
+  from: number, // value to which counter should go, start from 0
+  to: number, // value to which counter should go, start from 0
   render: (value: number) => React.Node, // render function to render an component
   easeFn: "linear" | "ease-in" | "ease-out" | "ease-in-out", // easing functions
   duration: number, // duration for counting
@@ -35,18 +36,18 @@ const raf: RAF = root.requestAnimationFrame
 export class Counter extends React.Component<Props, State> {
 
   static defaultProps = {
-    value: 0,
+    from: 0,
+    to: 0,
     easeFn: "ease-out",
     duration: 1500,
     render: (value: number) => <span>{value}</span>,
     strict: false,
   }
-
   state = {
     count: 0
   }
-
   easeFn: EaseFn
+  rafHandle: number
 
   constructor (...args: Array<any>) {
     super(...args)
@@ -69,7 +70,6 @@ export class Counter extends React.Component<Props, State> {
       this.easeFn = linear
       break
     }
-    this.rafHandle = 0
   }
 
   componentDidMount () {
@@ -77,21 +77,34 @@ export class Counter extends React.Component<Props, State> {
   }
 
   componentWillUnmount () {
+    this.cancelUpdate()
+  }
+
+  cancelUpdate () {
     this.rafHandle && raf.cancel(this.rafHandle)
   }
 
+  componentDidUpdate (prevProps: Props) {
+    const { from, to } = prevProps
+    if (from !== this.props.from || to !== this.props.to) {
+      // need to update recycle
+      this.cancelUpdate()
+      this.setState({
+        count: this.props.from
+      }, () => {
+        this.incrementCounter(this.props.from)
+      })
+    }
+  }
+
   incrementCounter (counter?: number = 0) {
-    const { value, duration, strict } = this.props
-    if (this.state.count < value) {
+    const { to, duration, strict } = this.props
+    if (this.state.count < to) {
       this.setState(({ count: number }): ({ count: number }) => ({
-        count: this.easeFn(counter, 0, value, duration)
+        count: this.easeFn(counter, 0, to, duration)
       }), () => {
         const timeBeforeRag: number = getCurrentTime()
         this.rafHandle = raf(() : void => {
-          const timeAtInc: number = getCurrentTime()
-          this.incrementCounter(counter + (strict ? timeAtInc - timeBeforeRag : 16))
-        })
-        raf(() : void => {
           const timeAtInc: number = getCurrentTime()
           this.incrementCounter(counter + (strict ? timeAtInc - timeBeforeRag : 16))
         })

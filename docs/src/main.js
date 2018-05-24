@@ -5,7 +5,7 @@ import Counter from "./../../src"
 const mountNode = document.getElementById('root')
 
 const RangeInput = ({ easeFn, value }) =>
-  <Counter value={value} easeFn={easeFn} render={(count) => (
+  <Counter to={value} easeFn={easeFn} render={(count) => (
      <input type="range" value={parseInt(count, 10)} readOnly min={0} max={value} />
   )} />
 
@@ -70,7 +70,7 @@ class App extends React.Component {
   render () {
     const { value } = this.state
     return <div>
-      <Counter value={1} render={(count) => {
+      <Counter to={1} render={(count) => {
         return <section className="hero text-center" style={{ opacity: count }}>
           <div className="container">
             <h1>ReactJS Counter</h1>
@@ -89,7 +89,7 @@ class App extends React.Component {
         <h1 className="text-center">Donuts</h1>
         <p className="text-center">Simple usage of counter with donut fill effects</p>
         <div className="container">
-          <Counter value={70} render={count => {
+          <Counter to={70} render={count => {
             return <Donut value={count} />
           }} />
         </div>
