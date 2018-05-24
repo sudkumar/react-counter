@@ -69,10 +69,15 @@ export class Counter extends React.Component<Props, State> {
       this.easeFn = linear
       break
     }
+    this.rafHandle = 0
   }
 
   componentDidMount () {
     this.incrementCounter()
+  }
+
+  componentWillUnmount () {
+    this.rafHandle && raf.cancel(this.rafHandle)
   }
 
   incrementCounter (counter?: number = 0) {
@@ -82,6 +87,10 @@ export class Counter extends React.Component<Props, State> {
         count: this.easeFn(counter, 0, value, duration)
       }), () => {
         const timeBeforeRag: number = getCurrentTime()
+        this.rafHandle = raf(() : void => {
+          const timeAtInc: number = getCurrentTime()
+          this.incrementCounter(counter + (strict ? timeAtInc - timeBeforeRag : 16))
+        })
         raf(() : void => {
           const timeAtInc: number = getCurrentTime()
           this.incrementCounter(counter + (strict ? timeAtInc - timeBeforeRag : 16))
